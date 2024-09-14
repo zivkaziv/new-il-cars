@@ -1,5 +1,6 @@
 import os
 import json
+import time
 import requests
 from mailjet_rest import Client
 
@@ -9,6 +10,7 @@ MAILJET_API_SECRET = os.environ['MAILJET_API_SECRET']
 SENDER_EMAIL = os.environ['SENDER_EMAIL']
 RECIPIENT_EMAIL = os.environ['RECIPIENT_EMAIL']
 DATA_FILE = os.environ['DATA_FILE']
+SLEEP_TIME = int(os.environ.get('SLEEP_TIME', 14400))  # Default to 4 hours (14400 seconds) if not set
 
 def make_request():
     url = 'https://data.gov.il/api/3/action/datastore_search'
@@ -69,7 +71,7 @@ def send_email(subject, body):
     print(result.status_code)
     print(result.json())
 
-def main():
+def check_for_updates():
     latest_id = get_latest_id()
     if latest_id is None:
         print("Failed to fetch the latest ID")
@@ -87,5 +89,12 @@ def main():
     else:
         print("No new data found")
 
+def main():
+    while True:
+        print("Checking for updates...")
+        check_for_updates()
+        print(f"Sleeping for {SLEEP_TIME} seconds...")
+        time.sleep(SLEEP_TIME)
+        
 if __name__ == "__main__":
     main()
