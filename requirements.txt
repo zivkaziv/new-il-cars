@@ -1,0 +1,2 @@
+requests==2.26.0
+mailjet-rest==1.3.4
