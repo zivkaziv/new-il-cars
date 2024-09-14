@@ -1,3 +1,6 @@
+
+docker build -t car-data-monitor .   
+
 docker run -d --restart unless-stopped \
            -e MAILJET_API_KEY=<key> \
            -e MAILJET_API_SECRET=<secret> \
