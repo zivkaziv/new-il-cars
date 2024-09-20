@@ -10,7 +10,7 @@ MAILJET_API_SECRET = os.environ['MAILJET_API_SECRET']
 SENDER_EMAIL = os.environ['SENDER_EMAIL']
 RECIPIENT_EMAIL = os.environ['RECIPIENT_EMAIL']
 DATA_FILE = os.environ['DATA_FILE']
-SLEEP_TIME = int(os.environ.get('SLEEP_TIME', 14400))  # Default to 4 hours (14400 seconds) if not set
+SLEEP_TIME = int(os.environ.get('SLEEP_TIME', 3600))  # Default to 1 hours (3600 seconds) if not set
 
 def make_request():
     url = 'https://data.gov.il/api/3/action/datastore_search'

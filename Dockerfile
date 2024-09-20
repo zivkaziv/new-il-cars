@@ -7,4 +7,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY car_data_monitor.py .
 
-CMD ["python", "car_data_monitor.py"]
+CMD ["python","-u", "car_data_monitor.py"]
